@@ -1,11 +1,12 @@
 # coding: utf-8
 import sys
+import os
 
 
 def chek_fasta_file(file):
-    with open(file, "r", encoding="utf-8") as read_file:
-        if read_file.readline()[0] != ">":
-            if read_file.readline()[0] == "# codin: utf-8":
+    with open(file, "r", encoding="utf-8") as readed_file:
+        if readed_file.readline(1) != ">":
+            if readed_file.readline(1) == "# coding: utf-8":
                 return "script"
             return "pass"
         return file
@@ -15,10 +16,10 @@ ADN_LIST = ("A", "C", "G", "T")
 
 
 def adn_read(fastafile):
-    with open(fastafile, "r", encoding="utf-8") as read_file:
+    with open(fastafile, "r", encoding="utf-8") as readed_file:
         counter = 0
         header = ""
-        for line in read_file.readlines():
+        for line in readed_file.readlines():
             counter += 1
             if line[0] == ">":
                 header = line.strip()
@@ -33,9 +34,20 @@ def adn_read(fastafile):
                               " and column " + str(column_counter) + " for sequence "+header[1:])
 
 
-print(sys.argv)
-for arg in sys.argv[1:]:
-    print(chek_fasta_file(arg))
+if __name__ == "__main__":
+    print(sys.argv)
+    for arg in sys.argv[1:]:
+        if os.path.isdir(arg):
+            for path, dirs, files in os.walk(arg):
+                for names in files:
+                    print(chek_fasta_file(os.path.join(path, names)))
+        else:
+            print("FALSE")
+
+        # try:
+            # print(os.walk(arg))
+        # except:
+            # print("Not a directory, going to file mode...")
 
 
 # def pierre_louis():  # C'EST PIERRE-LOÏC #
