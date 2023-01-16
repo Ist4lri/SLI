@@ -15,23 +15,26 @@ def chek_fasta_file(file):
 ADN_LIST = ("A", "C", "G", "T")
 
 
-def adn_read(fastafile):
-    with open(fastafile, "r", encoding="utf-8") as readed_file:
-        counter = 0
-        header = ""
+def adn_read(fasta_file):
+    with open(fasta_file, "r", encoding="utf-8") as readed_file:
+        line_of_file = 0
+        name_sequence = ""
         for line in readed_file.readlines():
-            counter += 1
+            line_of_file += 1
             if line[0] == ">":
-                header = line.strip()
+                name_sequence = line.strip()
             else:
                 line = line.strip()
                 line = line.upper()
-                column_counter = 0
+                column_of_file = 0
                 for char in line:
-                    column_counter += 1
+                    column_of_file += 1
                     if char not in ADN_LIST:
-                        print(char + " It's not a nucl in line " + str(counter) +
-                              " and column " + str(column_counter) + " for sequence "+header[1:])
+                        print("\nOn "+fasta_file +
+                              ", sequence named : "+name_sequence)
+                        print("At line "+str(line_of_file) +
+                              " and column "+str(column_of_file)+" :")
+                        print("There is a non-nucleotide character : "+char+"\n")
 
 
 if __name__ == "__main__":
@@ -40,14 +43,17 @@ if __name__ == "__main__":
         if os.path.isdir(arg):
             for path, dirs, files in os.walk(arg):
                 for names in files:
-                    print(chek_fasta_file(os.path.join(path, names)))
+                    result = chek_fasta_file(os.path.join(path, names))
+                    if result == os.path.join(path, names):
+                        adn_read(result)
+                    else:
+                        print("Not a Fasta File, going to the next file !")
         else:
-            print("FALSE")
-
-        # try:
-            # print(os.walk(arg))
-        # except:
-            # print("Not a directory, going to file mode...")
+            result = chek_fasta_file(arg)
+            if result == arg:
+                adn_read(result)
+            else:
+                print("Not a Fasta File, going to the next file !")
 
 
 # def pierre_louis():  # C'EST PIERRE-LOÏC #
