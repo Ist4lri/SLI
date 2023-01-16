@@ -1,5 +1,5 @@
 # coding: utf-8
-"""System and arg module."""
+"""Check if fasta file and check if there is non nucleotid character"""
 import sys
 import os
 
