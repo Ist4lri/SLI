@@ -10,7 +10,8 @@ def chek_fasta_file(file):
     """Check if a file is a fasta File or not. If yez, it returns itself
     if it doesn't, return some string to say that is not Fasta File."""
     with open(file, "r", encoding="utf-8") as readed_file:
-        if readed_file.readline(1) != ">":
+        if readed_file.readline(1) != ">":  # First char of a fasta file
+            # Obviously, if the first line is not this one, this break the func...
             if readed_file.readline(1) == "# coding: utf-8":
                 return "script"
             return "pass"
@@ -41,11 +42,13 @@ def adn_read(fasta_file):
 
 
 if __name__ == "__main__":
-    if sys.argv[-1] != sys.argv[0]:
-        for arg in sys.argv:
-            if os.path.isdir(arg):
+    if sys.argv[-1] != sys.argv[0]:  # Check if there is other argument
+        for arg in sys.argv:  # This is stupid but check all argument, including this script
+            if os.path.isdir(arg):  # If it's directory
+                # Takes path, dir, and files of the directory
                 for path, dirs, files in os.walk(arg):
-                    for names in files:
+                    for names in files:  # for each names
+                        # The path to send to the func before
                         RESULT = chek_fasta_file(os.path.join(path, names))
                         if RESULT == os.path.join(path, names):
                             adn_read(RESULT)
@@ -53,25 +56,15 @@ if __name__ == "__main__":
                             print("Not a Fasta File, going to the next file !")
             else:
                 try:
-                    os.path.isfile(arg)
+                    os.path.isfile(arg)  # check if the file exist...
                     RESULT = chek_fasta_file(arg)
                     if RESULT == arg:
                         adn_read(RESULT)
                     else:
                         print("Not a Fasta File, going to the next file !")
+                # Where is the file ? (In the Kitchen ?)
                 except FileNotFoundError as error:
                     print(error)
     else:
+        # Nice try but it's empty
         print("Veuillez renseigner un fichier ou un dossier !")
-
-
-# def pierre_louis():  # C'EST PIERRE-LOÏC #
-#     with open("a.fasta", "r") as mainFile:
-#         if mainFile.readline()[0] == ">":
-#             for line in mainFile.readlines():
-#                 for char in line:
-#                     if char != "A" or char != "C" or char != "G" or char != "T":
-#                         print("Error this is not a nucleotide !")
-#                         break
-#         else:
-#             print("This is not a fasta file !")
