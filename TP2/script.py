@@ -1,9 +1,14 @@
 # coding: utf-8
+"""System and arg module."""
 import sys
 import os
 
+ADN_LIST = ("A", "C", "G", "T")
+
 
 def chek_fasta_file(file):
+    """Check if a file is a fasta File or not. If yez, it returns itself
+    if it doesn't, return some string to say that is not Fasta File."""
     with open(file, "r", encoding="utf-8") as readed_file:
         if readed_file.readline(1) != ">":
             if readed_file.readline(1) == "# coding: utf-8":
@@ -12,10 +17,8 @@ def chek_fasta_file(file):
         return file
 
 
-ADN_LIST = ("A", "C", "G", "T")
-
-
 def adn_read(fasta_file):
+    """Detecting all non nucleotid in a fasta file, with the line and column position."""
     with open(fasta_file, "r", encoding="utf-8") as readed_file:
         line_of_file = 0
         name_sequence = ""
@@ -38,22 +41,28 @@ def adn_read(fasta_file):
 
 
 if __name__ == "__main__":
-    print(sys.argv)
-    for arg in sys.argv[1:]:
-        if os.path.isdir(arg):
-            for path, dirs, files in os.walk(arg):
-                for names in files:
-                    result = chek_fasta_file(os.path.join(path, names))
-                    if result == os.path.join(path, names):
-                        adn_read(result)
+    if sys.argv[-1] != sys.argv[0]:
+        for arg in sys.argv:
+            if os.path.isdir(arg):
+                for path, dirs, files in os.walk(arg):
+                    for names in files:
+                        RESULT = chek_fasta_file(os.path.join(path, names))
+                        if RESULT == os.path.join(path, names):
+                            adn_read(RESULT)
+                        else:
+                            print("Not a Fasta File, going to the next file !")
+            else:
+                try:
+                    os.path.isfile(arg)
+                    RESULT = chek_fasta_file(arg)
+                    if RESULT == arg:
+                        adn_read(RESULT)
                     else:
                         print("Not a Fasta File, going to the next file !")
-        else:
-            result = chek_fasta_file(arg)
-            if result == arg:
-                adn_read(result)
-            else:
-                print("Not a Fasta File, going to the next file !")
+                except FileNotFoundError as error:
+                    print(error)
+    else:
+        print("Veuillez renseigner un fichier ou un dossier !")
 
 
 # def pierre_louis():  # C'EST PIERRE-LOÏC #
