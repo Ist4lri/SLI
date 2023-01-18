@@ -42,7 +42,7 @@ def adn_read(fasta_file):
 
 
 if __name__ == "__main__":
-    if sys.argv[-1] != sys.argv[0]:  # Check if there is other argument
+    if len(sys.argv) <= 0:  # Check if there is other argument
         for arg in sys.argv:  # This is stupid but check all argument, including this script
             if os.path.isdir(arg):  # If it's directory
                 # Takes path, dir, and files of the directory
