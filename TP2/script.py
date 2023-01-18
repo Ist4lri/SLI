@@ -53,7 +53,8 @@ if __name__ == "__main__":
                         if RESULT == os.path.join(path, names):
                             adn_read(RESULT)
                         else:
-                            print("Not a Fasta File, going to the next file !")
+                            print(
+                                f"{os.path.join(path,names)} is not a Fasta File")
             else:
                 try:
                     os.path.isfile(arg)  # check if the file exist...
@@ -61,7 +62,7 @@ if __name__ == "__main__":
                     if RESULT == arg:
                         adn_read(RESULT)
                     else:
-                        print("Not a Fasta File, going to the next file !")
+                        print(f"{os.path.join(path,names)} is not a Fasta File")
                 # Where is the file ? (In the Kitchen ?)
                 except FileNotFoundError as error:
                     print(error)
