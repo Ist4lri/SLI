@@ -11,7 +11,7 @@ class Animal():
         self.children = {}
 
     def __repr__(self) -> str:
-        return "{}, {}e génération.".format(self.species, self.generation)
+        return f"{self.species}, {self.generation}e génération."
 
     def make_a_children(self, species, new_generation) -> None:
         if species.upper() != self.species.upper():
@@ -22,35 +22,35 @@ class Animal():
                 max_float = Decimal(max(self.children.keys()))+Decimal(0.01)
                 self.children[max_float] = Animal(
                     species, new_generation)
-                print(f'Reproduction effectuée !')
+                print('Reproduction effectuée !')
             else:
                 self.children[float(new_generation)] = Animal(
                     species, new_generation)
-                print(f'Reproduction effectuée !')
+                print('Reproduction effectuée !')
 
     def where_is_mommy(self, asking_generation) -> None:
-        if self.children == {}:
+        if not self.children:
             print(f"L'espèce {self.species} a besoin de se reproduire avant !")
         else:
             print(
                 f'\nLe {self.species} numéros {asking_generation} a pour ancêtre :\n')
             if asking_generation >= 2.0:
-                for k, v in self.children.items():
-                    if k < asking_generation and k >= 1:
-                        print(f'Ancêtre ID : {str(k)}, nom : {v}')
+                for key, value in self.children.items():
+                    if asking_generation > key >= 1:
+                        print(f'Ancêtre ID : {str(key)}, nom : {value}')
             else:
                 print(f'Ancêtre {self.children[1.0]}')
 
     def where_is_charlie(self, asking_generation) -> None:
-        if self.children == {}:
+        if not self.children:
             print(
                 f"L'espèce {self.species} a besoin de se reproduire avant !")
         else:
             print(
                 f'\nLe {self.species} numéros {asking_generation} a pour enfant :\n')
-            for k, v in self.children.items():
-                if k > asking_generation:
-                    print(f'Enfant ID : {str(k)}, nom : {v}')
+            for key, value in self.children.items():
+                if key > asking_generation:
+                    print(f'Enfant ID : {str(key)}, nom : {value}')
 
 
 if __name__ == "__main__":
