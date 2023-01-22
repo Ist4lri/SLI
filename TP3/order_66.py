@@ -3,20 +3,32 @@
 
 
 class Animal():
-    def __init__(self, species, age=0, location="Espace", sterile=False) -> None:
+    def __init__(self, species, generation=1) -> None:
         self.species = species
-        self.age = age
-        self.location = location
-        self.steril = sterile
+        self.generation = generation
+        self.age = 358
         self.children = []
 
     def __str__(self) -> str:
-        return f'This Animal is steril ? {self.steril}, How many children ? {self.children}'
+        return f'{self.children}'
 
-    def make_a_children(self, species, sterile=False) -> None:
-        self.children.append(Animal(species).species)
+    def __repr__(self) -> str:
+        return "Espèce {}, enfant ayant l'id suivant : {}, la mère étant : {}".format(self.species, self.generation, "coucou")
+
+    def make_a_children(self, species, new_generation) -> None:
+        if species.upper() != self.species.upper():
+            print("Not the same species, check this out first.")
+            return None
+        if self.generation+1 != new_generation:
+            print(
+                f"Give a valid generation, actual generation is {self.genetation}")
+            return None
+        self.children.append(Animal(species, new_generation))
+        self.children.append(Animal(species, new_generation+1))
+        self.children.append(Animal(species, new_generation+2))
 
 
-koala = Animal("koala")
-koala.make_a_children("koala1")
-print(koala)
+if __name__ == "__main__":
+    koala = Animal("Koala")
+    koala.make_a_children("Koala", 2)
+    print(koala)
