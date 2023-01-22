@@ -9,26 +9,27 @@ class Animal():
         self.age = 358
         self.children = {}
 
-    def __str__(self) -> str:
-        return f'{[self.children[i] for i in range(len(self.children))]}'
-
     def __repr__(self) -> str:
-        return "Espèce {}, enfant ayant l'id suivant : {}, la mère étant : {}".format(self.species, self.generation, "coucou")
+        return "{}, {}e génération.".format(self.species, self.generation)
 
     def make_a_children(self, species, new_generation) -> None:
         if species.upper() != self.species.upper():
             print("Not the same species, check this out first.")
-        if self.children[new_generation]:
-            print("ici")
+        if new_generation in self.children:
+            max_float = max(self.children.keys())+0.01
+            self.children[max_float] = Animal(
+                species, new_generation)
+            print(f'Reproduction effectuée !')
         else:
-            self.children[new_generation] = Animal(species, new_generation)
+            self.children[float(new_generation)] = Animal(
+                species, new_generation)
+            print(f'Reproduction effectuée !')
 
 
 if __name__ == "__main__":
     Chat = Animal("Chat")
     Chat.make_a_children("Chat", 1)
-    Chat.make_a_children("Chat", 3)
-    Chat.make_a_children("Chat", 4)
-    Chat.make_a_children("Chat", 5)
-
-    print(Chat)
+    Chat.make_a_children("Chat", 1)
+    Chat.make_a_children("Chat", 1)
+    Chat.make_a_children("Chat", 1)
+    print(Chat.children)
