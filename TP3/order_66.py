@@ -15,19 +15,25 @@ class Animal():
     def make_a_children(self, species, new_generation) -> None:
         if species.upper() != self.species.upper():
             print("Not the same species, check this out first.")
-        if new_generation in self.children:
-            max_float = max(self.children.keys())+0.01
-            self.children[max_float] = Animal(
-                species, new_generation)
-            print(f'Reproduction effectuée !')
         else:
-            self.children[float(new_generation)] = Animal(
-                species, new_generation)
-            print(f'Reproduction effectuée !')
+            if new_generation in self.children:
+                max_float = max(self.children.keys())+0.01
+                self.children[max_float] = Animal(
+                    species, new_generation)
+                print(f'Reproduction effectuée !')
+            else:
+                self.children[float(new_generation)] = Animal(
+                    species, new_generation)
+                print(f'Reproduction effectuée !')
+
+    def where_is_mummy(self) -> None:
+        if self.children == {}:
+            print(f"L'espèce {self.species} a besoin de se reproduire avant !")
 
 
 if __name__ == "__main__":
     Chat = Animal("Chat")
+    Chat.where_is_mummy()
     Chat.make_a_children("Chat", 1)
     Chat.make_a_children("Chat", 1)
     Chat.make_a_children("Chat", 1)
