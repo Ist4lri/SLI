@@ -11,7 +11,8 @@ class Animal():
         self.species = species
         self.generation = generation
         self.name = name
-        self.children = {}
+        self.children = {
+            1: f"{self.species},{generation}e generation, nommé {self.name}"}  # need initialisation
 
     def __repr__(self) -> str:
         """This is for transforming object into a string who describe it."""
@@ -35,47 +36,79 @@ class Animal():
                     species, name, new_generation)
                 print('Reproduction effectuée !')
 
-    def where_is_mommy(self, asking_generation) -> None:
+    def where_is_mommy(self, asking) -> None:
         """Asking who is ancestor of the asked animal"""
-        if not self.children:
+        if not self.children:  # Dic empty
             print(f"L'espèce {self.species} a besoin de se reproduire avant !")
         else:
-            print(
-                f'\nLe {self.species} numéros {asking_generation} a pour ancêtre :\n')
-            if asking_generation >= 2.0:
+            if isinstance(asking, float):
+                print(
+                    f'\nLe {self.species} numéros {asking} a pour ancêtre(s) :\n')
+                if asking >= 1.01:
+                    for key, value in self.children.items():
+                        if asking > key >= 1:
+                            print(
+                                f'Ancêtre ID : {str(key)}, {value}')
+                else:
+                    print(f'Ancêtre {self.children[1.0]}')
+            elif isinstance(asking, str):
+                print(
+                    f'\nLe {self.species} nommé {asking} a pour ancêtre(s) :\n')
                 for key, value in self.children.items():
-                    if asking_generation > key >= 1:
-                        print(
-                            f'Ancêtre ID : {str(key)}, {value}')
+                    print(f'Enfant ID : {str(key)}, nom : {value}')
+                    # The Value of the first entry of Dict is not a object ! Need to avoid it
+                    if key != 1:
+                        if asking.capitalize() in value.name:
+                            break
             else:
-                print(f'Ancêtre {self.children[1.0]}')
+                print("Please put a float or a string.")
 
-    def where_is_charlie(self, asking_generation) -> None:
+    def where_is_charlie(self, asking) -> None:
         """Asking who is child of the asked animal"""
         if not self.children:
             print(
                 f"L'espèce {self.species} a besoin de se reproduire avant !")
         else:
-            print(
-                f'\nLe {self.species} numéros {asking_generation} a pour enfant :\n')
-            for key, value in self.children.items():
-                if key > asking_generation:
-                    print(f'Enfant ID : {str(key)}, nom : {value}')
+            if isinstance(asking, float):
+                print(
+                    f'\nLe {self.species} numéros {asking} a pour enfant(s) :\n')
+                for key, value in self.children.items():
+                    if key > asking:
+                        print(f'Enfant ID : {str(key)}, nom : {value}')
+            elif isinstance(asking, str):
+                print(
+                    f'\nLe {self.species} nommé {asking} a pour enfant(s) :\n')
+                saved_id = 0
+                for key, value in self.children.items():
+                    # The Value of the first entry of Dict is not a object ! Need to avoid it
+                    if key != 1:
+                        if asking.capitalize() in value.name:
+                            saved_id = key
+                        # When the key is reached, print all animal that is after
+                        elif saved_id != 0:
+                            print(f'Enfant ID : {str(key)}, nom : {value}')
+            else:
+                print("Please put a float or a string.")
 
 
 if __name__ == "__main__":
-    Chat = Animal("Chat", "Chaton")
-    Chat.where_is_mommy(1.3)
-    Chat.make_a_children("Chat", "Miaou", 1)
-    Chat.make_a_children("Chat", "Yumi", 1)
-    Chat.make_a_children("Chat", "Talion", 2)
-    Chat.make_a_children("Chat", "Xerath", 2)
-    Chat.make_a_children("Chat", "Thresh", 3)
-    Chat.make_a_children("Chat", "Leona", 3)
-    Chat.make_a_children("Chat", "Fizz", 3)
-    Chat.make_a_children("Chat", "Veigar", 3)
-    Chat.make_a_children("Chat", "Zed", 3)
-    Chat.make_a_children("Chat", "Udyr", 3)
-    Chat.make_a_children("Chat", "Lux", 3)
-    Chat.where_is_mommy(2.01)
-    Chat.where_is_charlie(2.01)
+    try:
+        Chat = Animal("Chat", "Chaton")
+        Chat.where_is_mommy(1.3)
+        Chat.make_a_children("Chat", "Miaou", 1)
+        Chat.make_a_children("Chat", "Yumi", 1)
+        Chat.make_a_children("Chat", "Talion", 2)
+        Chat.make_a_children("Chat", "Xerath", 2)
+        Chat.make_a_children("Chat", "Thresh", 3)
+        Chat.make_a_children("Chat", "Leona", 3)
+        Chat.make_a_children("Chat", "Fizz", 3)
+        Chat.make_a_children("Chat", "Veigar", 3)
+        Chat.make_a_children("Chat", "Zed", 3)
+        Chat.make_a_children("Chat", "Udyr", 3)
+        Chat.make_a_children("Chat", "Lux", 3)
+        Chat.where_is_mommy("Yumi")
+        Chat.where_is_mommy(1.02)
+        Chat.where_is_charlie(1.02)
+        Chat.where_is_charlie("Yumi")
+    except TypeError as error:
+        print(error)
