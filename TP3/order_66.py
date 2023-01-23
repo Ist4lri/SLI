@@ -93,7 +93,6 @@ class Animal():
 
 if __name__ == "__main__":
     Chat = Animal("Chat", "Chaton")
-    Chat.where_is_mommy(1.3)
     Chat.make_a_children("Chat", "Miaou", 1)
     Chat.make_a_children("Chat", "Yumi", 1)
     Chat.make_a_children("Chat", "Talion", 2)
