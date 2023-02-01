@@ -6,7 +6,7 @@ import os
 ADN_LIST = ("A", "C", "G", "T")
 
 
-def chek_fasta_file(file):
+def check_fasta_file(file):
     """Check if a file is a fasta File or not. If yez, it returns itself
     if it doesn't, return some string to say that is not Fasta File."""
     with open(file, "r", encoding="utf-8") as readed_file:
@@ -49,7 +49,7 @@ if __name__ == "__main__":
                 for path, dirs, files in os.walk(arg):
                     for names in files:  # for each names
                         # The path to send to the func before
-                        RESULT = chek_fasta_file(os.path.join(path, names))
+                        RESULT = check_fasta_file(os.path.join(path, names))
                         if RESULT == os.path.join(path, names):
                             adn_read(RESULT)
                         else:
@@ -58,7 +58,7 @@ if __name__ == "__main__":
             else:
                 try:
                     os.path.isfile(arg)  # check if the file exist...
-                    RESULT = chek_fasta_file(arg)
+                    RESULT = check_fasta_file(arg)
                     if RESULT == arg:
                         adn_read(RESULT)
                     else:
