@@ -132,18 +132,18 @@ node7.link_node(node8, node9)
 tree = BinayrTree()
 tree.root = node1
 
-print("====================BASIC TREE===================")
+print("===================BASIC TREE===================")
 
 print(tree.tree_basic())
 
-print("====================ADVANCED TREE===================")
+print("===================ADVANCED TREE===================")
 
 print(tree.tree_verticallu())
 
-print("====================DEPTH TREE===================")
+print("===================DEPTH TREE===================")
 
 print(tree.tree_depth())
 
-print("====================NODE TREE===================")
+print("===================NODE TREE===================")
 
 print(tree.tree_node())

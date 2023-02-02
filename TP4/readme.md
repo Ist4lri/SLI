@@ -1,4 +1,4 @@
-# Execute anotherTree.py for seeing the homewok.
+# Execute anothertree.py for seeing the homewok.
 
 Warning, i don't make all the exercices, because of depression, in mind. Little better today, but...still running :)
 
