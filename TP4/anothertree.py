@@ -3,6 +3,8 @@
 
 
 class BinayrTree():
+    """To make the Binary Tree"""
+
     def __init__(self) -> None:
         self.root = None
 
@@ -24,6 +26,8 @@ class BinayrTree():
 
 
 class Node():
+    """To make the node of the Tree"""
+
     def __init__(self, value) -> None:
         self.right = None
         self.left = None
@@ -100,17 +104,17 @@ class Node():
 
     def node_number(self) -> int:
         """Count the number of node"""
-        COUNT = 1
+        count = 1
         if self.node_is_leaf():
             return 1
         if self.right and not self.left:
-            COUNT += self.right.node_number()
+            count += self.right.node_number()
         if self.left and not self.right:
-            COUNT += self.left.node_number()
+            count += self.left.node_number()
         if self.left and self.right:
-            COUNT += self.left.node_number()
-            COUNT += self.right.node_number()
-        return COUNT
+            count += self.left.node_number()
+            count += self.right.node_number()
+        return count
 
 
 node1 = Node(0)
