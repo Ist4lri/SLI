@@ -1,5 +1,6 @@
 # Encoding : utf-8
 """This program can show a binary tree in simple format"""
+from random import randint
 
 
 class BinayrTree():
@@ -23,6 +24,10 @@ class BinayrTree():
     def tree_node(self) -> int:
         """Return the total number of nodes in tree"""
         return self.root.node_number()
+
+    def tree_difficult(self) -> str:
+        """Trying the hardway print tree"""
+        return self.root.display_hard_mode(self.root.display_hard_node())
 
 
 class Node():
@@ -116,6 +121,37 @@ class Node():
             count += self.right.node_number()
         return count
 
+    def display_hard_mode(self, dict) -> str:
+        max_depth = self.get_max_depth()
+        tabulation = ""
+        for _ in range(0, max_depth):
+            tabulation += "\t"
+        result = tabulation + \
+            str(list(dict.keys())[0]) + " - " + \
+            str(list(dict.values())[0]) + "\n"
+        count = 0
+        for key, value in dict.items():
+            count += 1
+            if value < list(dict.values())[0]:
+                result += key + " - " + str(value)
+            elif value > list(dict.values())[0]:
+                result += tabulation + key + " - " + str(value)
+            if (count % 3) == 0:
+                result += "\n"
+
+        return result
+
+    def display_hard_node(self) -> str:
+        temp_dict = {str(self): randint(1, 99)}
+        if self.right and self.left:
+            temp_dict.update(self.right.display_hard_node())
+            temp_dict.update(self.left.display_hard_node())
+        if self.right and not self.left:
+            temp_dict.update(self.right.display_hard_node())
+        if self.left and not self.right:
+            temp_dict.update(self.left.display_hard_node())
+        return temp_dict
+
 
 node1 = Node(0)
 node2 = Node(1)
@@ -128,7 +164,7 @@ node7 = Node(6)
 node3.link_node(node4, node7)
 node8 = Node(7)
 node9 = Node(8)
-node7.link_node(node8, node9)
+node7.link_node(node9)
 tree = BinayrTree()
 tree.root = node1
 
@@ -147,3 +183,7 @@ print(tree.tree_depth())
 print("===================NODE TREE===================")
 
 print(tree.tree_node())
+
+print("===================HARDWAY TREE===================")
+
+print(tree.tree_difficult())
