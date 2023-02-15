@@ -1,4 +1,4 @@
-Faire en sorte d'afficher toute la liste des animaux dans a.txt à l'aide de la Classe *Listbox*
+ [x] Faire en sorte d'afficher toute la liste des animaux dans a.txt à l'aide de la Classe *Listbox*
 
  [x] Pouvoir ajouter un animal (fait en cour)
  [ ] Pourvoir supprimer un animal que l'on aura sélectionner dans la liste
