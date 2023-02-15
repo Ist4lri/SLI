@@ -1,5 +1,6 @@
 from tkinter import *
 
+
 class Application(Tk):
     def __init__(self, controller):
         Tk.__init__(self)
@@ -11,9 +12,11 @@ class Application(Tk):
         self.label = Label(self, text="J'adore Python !")
         self.label1 = Label(self, text="")
         self.label_search = Label(self, text="Recherche")
-        self.bouton_display = Button(self, text="Afficher", command=self.display_something)
+        self.bouton_display = Button(
+            self, text="Afficher", command=self.display_something)
         self.bouton = Button(self, text="Quitter", command=self.quit_window)
-        self.bouton_add_animal = Button(self, text="Add", command=self.add_animal)
+        self.bouton_add_animal = Button(
+            self, text="Add", command=self.add_animal)
 
         self.search = Entry(self)
         self.entries = {}
@@ -32,6 +35,7 @@ class Application(Tk):
             self.entries[att].pack()
         self.bouton.pack()
         self.bouton_add_animal.pack()
+
     def quit_window(self):
         self.controller.quit_window()
 
@@ -47,10 +51,10 @@ class Application(Tk):
             dict_animal[key] = self.entries[key].get()
         self.controller.add_animal(dict_animal)
 
-
     def view_window(self):
         self.title("Ma Première App :-)")
         self.mainloop()
+
 
 if __name__ == "__main__":
     app = Application()

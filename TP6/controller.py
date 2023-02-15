@@ -1,7 +1,8 @@
-from vue import Application
+from vue1 import Application
 from model import Model
 
-class Controller() :
+
+class Controller():
     def __init__(self):
 
         self.model = Model("a.txt")
@@ -19,11 +20,11 @@ class Controller() :
     def get_model_entries(self):
         return self.model.get_attributes()
 
-
     def quit_window(self):
         print("close app")
         self.model.close()
         self.view.destroy()
 
-if __name__ == "__main__" :
+
+if __name__ == "__main__":
     C = Controller()

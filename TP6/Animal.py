@@ -7,10 +7,10 @@ class Animal():
         self.name = name
 
     def __str__(self):
-        return self.species +"/"+str(self.age) +"/"+self.diet +"/"+str(self.foot) +"/"+self.name
+        return self.species + "/"+str(self.age) + "/"+self.diet + "/"+str(self.foot) + "/"+self.name
 
 
-if __name__ == "__main__" :
+if __name__ == "__main__":
     a = Animal("Test", "21", "diet", "foot", "name")
     print(dir(a))
-    print(a.__getattribute__)
+    print(a.__getattribute__())
