@@ -18,6 +18,9 @@ class Model():
         self.file.write("\n"+dict_animal["species"]+","+dict_animal["age"]+"," +
                         dict_animal["diet"]+","+dict_animal["foot"]+","+dict_animal["name"])
 
+    def delete(self, name):
+        self.file
+
     def close(self):
         self.file.close()
 
