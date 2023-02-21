@@ -3,4 +3,3 @@ Human,21,omnivore,2,Audrey
 Human,25,omnivore,2,Mohamed
 Human,22,Omnivore,2,Pierre-Loïc
 Human,21,Omnivore,2,Lou
-Bite,chatte,couille,nichon,prout

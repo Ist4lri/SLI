@@ -8,11 +8,12 @@ class Controller():
         self.model = Model("a.txt")
         self.model.read_file()
         self.view = Application(self)
-
+        self.view.display_something()
         self.view.view_window()
 
-    def display(self, value):
-        self.view.display_label(self.model.dico_animaux[value])
+    def lb_display(self):
+        for key in self.model.dico_animaux.keys():
+            self.view.display_lb(self.model.dico_animaux[key])
 
     def add_animal(self, dict_animal):
         self.model.save(dict_animal)
