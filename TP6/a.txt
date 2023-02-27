@@ -2,7 +2,6 @@ Human,22,omnivore,2,Rochelle
 Human,21,omnivore,2,Audrey
 Human,25,omnivore,2,Mohamed
 Human,22,Omnivore,2,Pierre-Loïc
-Human,21,Omnivore,2,Lou
-Human,32,Omnivore,2,Olivier
-Human,23,Omnivore,23,Thomas
 Human,23,Omnivore,2,Lynn
+Human,23,Omnivore,2,Olivier
+Human,23,Omnivore,2,Lou

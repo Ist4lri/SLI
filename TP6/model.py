@@ -15,14 +15,17 @@ class Model():
             a = Animal(tab[0], tab[1], tab[2], tab[3], tab[4])
             self.dico_animaux[a.name] = a
 
-    def check_line(self, search, mode):
+    def delete_line_file(self, search, name):
         self.file.seek(0)
-        stock_file = self.file.read()
-        self.file.truncate()
-        for line in stock_file:
-            if search not in stock_file:
-                if mode == "delete":
-                    self.file.write(line)
+        stock_of_line = []
+        for line in self.file.readlines():
+            stock_of_line.append(line)
+        self.file.close()
+        self.file = open(name, 'w')
+        for line in stock_of_line:
+            if search not in line:
+                self.file.write(line)
+        self.file.close()
 
         # Le code ici est bien pour faire du remplacement, quand il faut modifier les entry.
         # a trouver : Un moyen de supriomer ce qu'on veut pas.

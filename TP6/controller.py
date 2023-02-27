@@ -10,20 +10,15 @@ class Controller():
         self.lb_display()
         self.view.view_window()
 
-    def open_truncate_file(self, option):
-        self.model.close()
-        self.model = Model("a.txt", option)
-
     def lb_display(self):
         for key in self.model.dico_animaux.keys():
             self.view.display_lb(self.model.dico_animaux[key])
 
-    def to_modify(self, key_dict):
-        print("Nike yoi")
-
     def to_delete(self, key_dict):
         del self.model.dico_animaux[key_dict]
-        self.model.check_line(key_dict, "delete")
+        self.model.delete_line_file(key_dict, "a.txt")
+        self.model = Model("a.txt", "r+")
+        self.model.read_file()
         self.view.resett_app()
         self.view.initiate_widgets()
         self.lb_display()
@@ -31,7 +26,7 @@ class Controller():
     def add_animal(self, dict_animal):
         self.model.save(dict_animal)
         self.view.refresh()
-        self.reading_file()
+        self.model.read_file()
         self.lb_display()
 
     def get_model_entries(self):
