@@ -5,3 +5,5 @@ Human,22,Omnivore,2,Pierre-Loïc
 Human,23,Omnivore,2,Lynn
 Human,23,Omnivore,2,Olivier
 Human,23,Omnivore,2,Lou
+Monster,22,Omnivore,25,Frankeinstein
+Human,23,Omnivore,2,Lucas

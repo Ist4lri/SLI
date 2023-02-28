@@ -1,5 +1,11 @@
+"""Animal Class"""
+
+
 class Animal():
+    """Animal Class"""
+
     def __init__(self, species, age, diet, foot, name):
+        """Init of the animal"""
         self.species = species
         self.age = age
         self.diet = diet
@@ -7,10 +13,5 @@ class Animal():
         self.name = name
 
     def __str__(self):
-        return self.species + "/"+str(self.age) + "/"+self.diet + "/"+str(self.foot) + "/"+self.name
-
-
-if __name__ == "__main__":
-    a = Animal("Test", "21", "diet", "foot", "name")
-    print(dir(a))
-    print(a.__getattribute__())
+        """To Have a propoer display"""
+        return self.species + ","+str(self.age) + ","+self.diet + ","+str(self.foot) + ","+self.name
