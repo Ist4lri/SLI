@@ -17,7 +17,7 @@ class Controller():
 
     def lb_display(self):
         """Access of the Dic, and Going to Display the List-Box"""
-        for key in self.model.dico_animaux.items():
+        for key in self.model.dico_animaux.keys():
             self.view.display_lb(self.model.dico_animaux[key])
 
     def to_modify_delete(self, mode, key_dict="", dict_animal={'data': 'value'}):
